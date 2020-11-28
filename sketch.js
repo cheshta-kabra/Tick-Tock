@@ -1,65 +1,71 @@
-var hr , mn , sec
-
 function setup() {
-  createCanvas(600,600);
+  createCanvas(650,650);
+  angleMode(DEGREES);
 }
 
 function draw() {
-  background(0,0,0);  
 
-  translate(200,200)
-  rotate(-90)
-  angleMode(DEGREES)
+  background(0);
 
-   hr = hour(); 
-   mn = minute();
-   sec = second();
+  fill(255);
+  textSize(24);
+  textStyle("bold");
+  text("  Tick - Tock Clock ", 200,400); 
+  text("Blue and Yellow Colour Denotes Second Hand",50,450);
+  text("Pink and Red Colour Denotes Minute Hand",50,550);
+  text("Green and White Colour Denotes Hour Hand",50,500);
 
+translate(200,200)
+rotate (-90);
 
-// use map to plot the hour , minute, sec to get a range from 0= 60 in a circle range from 0-360
-//example of scAngle given, make same for mnAngle and hrAngle
-  scAngle = map(sc, 0, 60, 0, 360);
+  let hr = hour();
+  let mn = minute();
+  let sc = second();
   
-  push();
-  rotate(scAngle)
-
-  stroke("red");
-  strokeWeight(7);
-  line(0,0,100,0)
-
-  pop();
-
-  mnAngle = map(mn, 0, 60, 0, 360);
-  
-  push();
-  rotate(mnAngle)
-
-  stroke("blue");
-  strokeWeight(7);
-  line(0,0,100,0)
-
-  pop();
-
-  hrAngle = map(hr, 0, 60, 0, 360);
-  
-  push();
-  rotate(hrAngle)
-
-  stroke("red");
-  strokeWeight(7);
-  line(0,0,100,0)
-
-  pop();
-
-  strokeWeight(10);
+  strokeWeight(8);
+  stroke("yellow");
   noFill();
-  stroke("green")
-
-  arc(0,0,305,305,0,hrAngle)
-  arc(50, 55, 80, 80, mnAngle);
-  arc(40, 45, 70, 60, scAngle);
-  // draw an arc using the below paramaters
-  //arc(x, y, w, h, start, stop)
-  //also give a stroke for each arc
+  let end = map(sc,0,60,0,360);
+  arc(0,0,300,300,0,end);
   
-}
+  stroke("Pink");
+  let end2 = map(mn,0,60,0,360);
+  arc(0,0,280,280,0,end2);
+  
+  stroke("Light blue");
+  let end3 = map(hr%12,0,12,-0,360);
+  arc(0,0,260,260,0,end3);
+  
+ /* fill(255);
+  textSize(24);
+  textStyle("bold");
+  text("Time : " + end3 + " : " + end2 + " : " + end , 50 , 400);
+*/
+  push();
+  rotate(end);
+  stroke("blue");
+  line(0,0,100,0);
+  pop();
+  
+  
+  push();
+  rotate(end2);
+  stroke("red");
+  line(0,0,75,0);
+  pop();
+  
+  push();
+  rotate(end3);
+  stroke("green");
+  line(0,0,50,0);
+  pop();
+  
+  stroke("Black");
+  point (0,0);
+
+  
+
+
+  }
+  
+  
